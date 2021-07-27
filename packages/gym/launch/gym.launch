@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="gym" type="root.py" name="gym_root" output="screen" ns="fakebot/gym" />
+    <node pkg="gym" type="camera.py" name="gym_camera" output="screen" ns="fakebot/gym" />
+    <node pkg="gym" type="wheels.py" name="gym_wheels" output="screen" ns="fakebot/gym" />
+</launch>

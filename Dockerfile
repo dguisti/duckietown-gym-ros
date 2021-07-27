@@ -1,13 +1,14 @@
 # parameters
-ARG REPO_NAME="<REPO_NAME_HERE>"
-ARG DESCRIPTION="<DESCRIPTION_HERE>"
-ARG MAINTAINER="<YOUR_FULL_NAME> (<YOUR_EMAIL_ADDRESS>)"
+ARG REPO_NAME="duckietown-gym-ros"
+ARG DESCRIPTION="ROS node to run gym simulated environment"
+ARG MAINTAINER="Dallin Guisti (dallin.guisti@gmail.com)"
 # pick an icon from: https://fontawesome.com/v4.7.0/icons/
 ARG ICON="cube"
 
 # ==================================================>
 # ==> Do not change the code below this line
-ARG ARCH=arm32v7
+#ARG ARCH=arm32v7
+ARG ARCH=amd64
 ARG DISTRO=daffy
 ARG BASE_TAG=${DISTRO}-${ARCH}
 ARG BASE_IMAGE=dt-ros-commons
@@ -64,7 +65,7 @@ COPY ./packages "${REPO_PATH}/packages"
 # build packages
 RUN . /opt/ros/${ROS_DISTRO}/setup.sh && \
   catkin build \
-    --workspace ${CATKIN_WS_DIR}/
+  --workspace ${CATKIN_WS_DIR}/
 
 # install launcher scripts
 COPY ./launchers/. "${LAUNCH_PATH}/"
@@ -76,13 +77,15 @@ CMD ["bash", "-c", "dt-launcher-${DT_LAUNCHER}"]
 
 # store module metadata
 LABEL org.duckietown.label.module.type="${REPO_NAME}" \
-    org.duckietown.label.module.description="${DESCRIPTION}" \
-    org.duckietown.label.module.icon="${ICON}" \
-    org.duckietown.label.architecture="${ARCH}" \
-    org.duckietown.label.code.location="${REPO_PATH}" \
-    org.duckietown.label.code.version.distro="${DISTRO}" \
-    org.duckietown.label.base.image="${BASE_IMAGE}" \
-    org.duckietown.label.base.tag="${BASE_TAG}" \
-    org.duckietown.label.maintainer="${MAINTAINER}"
+  org.duckietown.label.module.description="${DESCRIPTION}" \
+  org.duckietown.label.module.icon="${ICON}" \
+  org.duckietown.label.architecture="${ARCH}" \
+  org.duckietown.label.code.location="${REPO_PATH}" \
+  org.duckietown.label.code.version.distro="${DISTRO}" \
+  org.duckietown.label.base.image="${BASE_IMAGE}" \
+  org.duckietown.label.base.tag="${BASE_TAG}" \
+  org.duckietown.label.maintainer="${MAINTAINER}"
 # <== Do not change the code above this line
 # <==================================================
+
+#ENV VEHICLE_NAME fakebot

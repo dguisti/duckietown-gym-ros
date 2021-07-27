@@ -1,0 +1,12 @@
+<package>
+    <name>gym</name>
+    <version>0.1.0</version>
+    <description>
+    ROS node to run gym simulated environment
+    </description>
+    <maintainer email="dguisti@davidsonacademy.unr.edu">Dallin Guisti</maintainer>
+    <license>None</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+</package>
